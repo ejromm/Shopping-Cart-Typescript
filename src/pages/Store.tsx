@@ -1,5 +1,5 @@
 import { StoreItem } from "../App";
-import {Row, Col} from 'react-bootstrap';
+import {Row, Col, Container} from 'react-bootstrap';
 import StoreCard from "../components/StoreCard";
 // create page that displays list of store items
 export default function Store( data: StoreItem[] ) {
@@ -8,12 +8,13 @@ export default function Store( data: StoreItem[] ) {
    const d = Array.from(Object.values(data));
     //return repsonsive bootstrap grid displaying a store card for each grid item
     return (
-        
-        <Row style={{marginTop: '1vh', marginBottom: '5vh'}} lg={4} md={2} sm={1} xs={1} className="g-4">
+        <Container >
+        <Row style={{paddingTop: '1%',paddingBottom:'5%'}} lg={4} md={2} sm={1} xs={1} className="g-4">
         {d.map((item, index) => (
             <Col style={{ height: '400px'}} key={index}><StoreCard {...item} /></Col>
         ))}
         </Row>
+        </Container>
         
 
     )

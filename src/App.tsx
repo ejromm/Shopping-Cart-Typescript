@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom"
+import { Route, Routes, useLocation } from "react-router-dom"
 import { Container } from "react-bootstrap"
 import Home from "./pages/Home"; 
 import Store from "./pages/Store";
@@ -18,6 +18,16 @@ export interface StoreItem  {
      rating: RateItem,
      title: string,
      image: string,
+}
+type BgColor = {
+    store: 'white',
+    '': 'black',
+}
+function ContainerColor(): string {
+   const path = useLocation().pathname; 
+   const location = path.split('/')[1];
+   if(location === '') return 'black';
+   else return 'white';
 }
 // create main app function with routes for different pages
 function App() {
@@ -50,7 +60,7 @@ function App() {
   return (
     <>
     <NavBar />
-   <Container>
+   <Container fluid className={`bg-${ContainerColor()}`}>
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/store" element={<Store {...data}  />} />
