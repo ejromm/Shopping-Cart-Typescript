@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Store from "./pages/Store";
 import NavBar from "./components/NavBar";
 import { useState, useEffect, SetStateAction } from "react";
+import ProductPage from "./pages/ProductPage";
 // create type for rating object
 export type RateItem = {
     rate: number;
@@ -19,10 +20,7 @@ export interface StoreItem  {
      title: string,
      image: string,
 }
-type BgColor = {
-    store: 'white',
-    '': 'black',
-}
+
 function ContainerColor(): string {
    const path = useLocation().pathname; 
    const location = path.split('/')[1];
@@ -64,6 +62,10 @@ function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/store" element={<Store {...data}  />} />
+      {data.map((item) => {
+         const name: string = item.title.replace(/[^A-Za-z0-9]/g, ' ');
+         return (<Route key={item.id} path={`/store/${name.replace(/\s+/g, '-').trim()}`} element={<ProductPage key={item.id} />}/>)
+      })}
     </Routes>
    </Container>
    </>

@@ -11,7 +11,7 @@ export default function Store( data: StoreItem[] ) {
         <Container >
         <Row style={{paddingTop: '1%',paddingBottom:'5%'}} lg={4} md={2} sm={1} xs={1} className="g-4">
         {d.map((item, index) => (
-            <Col style={{ height: '400px'}} key={index}><StoreCard {...item} /></Col>
+            <Col style={{ height: '400px'}} key={index} ><StoreCard  {...item} /></Col>
         ))}
         </Row>
         </Container>

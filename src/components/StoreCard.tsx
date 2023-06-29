@@ -23,7 +23,7 @@ export default function StoreCard({price, rating, title, image}: StoreItemProps)
     }
     // return bootstrap card 
     return (
-        <Card className="h-100 d-flex justify-content-center border-0" style={{paddingTop:'10%'}}>
+        <Card className="h-100 d-flex justify-content-center border-0" as={'a'} href={`/store/${title.replace(/[^A-Za-z0-9]/g, ' ').replace(/\s+/g, '-').trim()}`} style={{paddingTop:'10%'}}>
             <Card.Img onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} variant="top" src={image}  style={{objectFit: 'contain',  height:'40%', transition: 'transform .7s', transform: isHover ? 'scale(.9)': '' }}  />
             <Card.Body>
              <Card.Text style={{fontFamily:'Lato, sans-serif' }}className="fw-light">{formatCurrency(price)}</Card.Text>   
