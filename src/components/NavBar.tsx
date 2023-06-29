@@ -1,6 +1,8 @@
 import { Container, Nav, Navbar as NavbarBs } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
+// create sticky navbar
 export default function NavBar() {
+    // return bootstrap navbar with links to pages
     return( 
         <NavbarBs sticky="top" className="bg-black" style={{height: '10vh'}}>
             <Container fluid='md'>

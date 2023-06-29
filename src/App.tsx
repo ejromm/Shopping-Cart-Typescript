@@ -4,10 +4,12 @@ import Home from "./pages/Home";
 import Store from "./pages/Store";
 import NavBar from "./components/NavBar";
 import { useState, useEffect, SetStateAction } from "react";
+// create type for rating object
 export type RateItem = {
     rate: number;
     count: number;
 }
+// create type for API call data
 export interface StoreItem  {
      category: string, 
      description: string,
@@ -17,30 +19,34 @@ export interface StoreItem  {
      title: string,
      image: string,
 }
-
+// create main app function with routes for different pages
 function App() {
+  // set data as array of store items 
   const [data, setData] = useState([] as StoreItem[]);
 
+  // fetch FakeStoreAPI data on page app load and update state
   useEffect(() => {
       async function ApiCall(): Promise<SetStateAction<StoreItem[]> | undefined>{
           try {
+              // fetch data using async/await
               const response = await fetch('https://fakestoreapi.com/products'); 
               const data : StoreItem[] = await response.json(); 
               setData(data);
               return data;
               
           } catch(err) {
+             //handle error if data failed to fetch
               console.error(err);
             
           }
       }
-     
+      // call async data fetching function
       ApiCall();
      
       
   },[])
   console.log(data);
- 
+  // return navbar and app routes 
   return (
     <>
     <NavBar />

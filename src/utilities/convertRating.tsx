@@ -6,11 +6,11 @@ export default function convertRating(rating: number): ReactNode[] {
     const output: ReactNode[] = [];
     //append all whole stars
     for(let i = rating ; i >= 1 ; i--) {
-        output.push(<FaStar style={{color: 'black'}} />)
+        output.push(<FaStar key={i} style={{color: 'black'}} />)
         rating--;
     }
     //append all half stars
-    if(rating === .5) output.push(<FaStarHalf style={{color: "black"}} />);
+    if(rating === .5) output.push(<FaStarHalf key={rating} style={{color: "black"}} />);
     
     return output;
 }   

@@ -1,10 +1,12 @@
 import { StoreItem } from "../App";
 import {Row, Col} from 'react-bootstrap';
 import StoreCard from "../components/StoreCard";
+// create page that displays list of store items
 export default function Store( data: StoreItem[] ) {
-   console.log(data);
+  
+   // convert data import into array containing store items
    const d = Array.from(Object.values(data));
-   console.log('dddd',d);
+    //return repsonsive bootstrap grid displaying a store card for each grid item
     return (
         
         <Row style={{marginTop: '1vh', marginBottom: '5vh'}} lg={4} md={2} sm={1} xs={1} className="g-4">

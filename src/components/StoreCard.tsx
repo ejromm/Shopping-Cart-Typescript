@@ -4,14 +4,16 @@ import { formatCurrency } from "../utilities/formatCurrency";
 import convertRating from "../utilities/convertRating.tsx";
 import { useState } from "react";
 
+// create type for nesessary store item info
 type StoreItemProps = {
     price: number, 
     rating: RateItem, 
     title: string,
     image: string,
 }
-
+// create store card component
 export default function StoreCard({price, rating, title, image}: StoreItemProps) {
+    // handle store image expanding on hover
     const [isHover, setHover] = useState(false);
     const handleMouseEnter = () => {
         setHover(true);
@@ -19,9 +21,9 @@ export default function StoreCard({price, rating, title, image}: StoreItemProps)
     const handleMouseLeave = () => {
         setHover(false);
     }
-    console.log(price, rating, title, image );
+    // return bootstrap card 
     return (
-        <Card className="h-100 d-flex justify-content-center border-0" style={{ paddingTop:'10%'}}>
+        <Card className="h-100 d-flex justify-content-center border-0" style={{paddingTop:'10%'}}>
             <Card.Img onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} variant="top" src={image}  style={{objectFit: 'contain',  height:'40%', transition: 'transform .7s', transform: isHover ? 'scale(.9)': '' }}  />
             <Card.Body>
              <Card.Text style={{fontFamily:'Lato, sans-serif' }}className="fw-light">{formatCurrency(price)}</Card.Text>   
