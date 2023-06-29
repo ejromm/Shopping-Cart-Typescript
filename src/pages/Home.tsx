@@ -1,5 +1,6 @@
 import { Col, Container, Row, Button } from "react-bootstrap"
 export default function Home() {
+    // create homepage containing button that links to store page
     return (
         <Container  className='bg-black'  style={{ height: '90vh'}}>
             <Row className=" d-flex flex-column" style={{ height: '60%'}}>
