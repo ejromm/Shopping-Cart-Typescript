@@ -64,7 +64,7 @@ function App() {
       <Route path="/store" element={<Store {...data}  />} />
       {data.map((item) => {
          const name: string = item.title.replace(/[^A-Za-z0-9]/g, ' ');
-         return (<Route key={item.id} path={`/store/${name.replace(/\s+/g, '-').trim()}`} element={<ProductPage key={item.id} />}/>)
+         return (<Route key={item.id} path={`/store/${name.replace(/\s+/g, '-').trim()}`} element={<ProductPage {...item} key={item.id} />}/>)
       })}
     </Routes>
    </Container>
