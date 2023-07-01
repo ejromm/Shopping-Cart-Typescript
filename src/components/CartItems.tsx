@@ -2,10 +2,14 @@ import  {CartItem, useShoppingCart } from '../context/ShoppingCartContext';
 import { Stack, Button, Image } from "react-bootstrap";
 import { formatCurrency } from "../utilities/formatCurrency";
 import { StoreItem } from '../App';
-
-export function CartItems(item: CartItem, data:StoreItem[] ) {
+type CartItemProps = {
+    item: CartItem
+    data: StoreItem[]
+}
+export function CartItems({item, data}: CartItemProps) {
     const { removeFromCart } = useShoppingCart(); 
-    const cItem: StoreItem | null | undefined = data.find(i => i.id === item.id); 
+    console.log('data in store')
+    const cItem: StoreItem | null | undefined = data.find((i: StoreItem) => i.id === item.id); 
     if(cItem == null) return null; 
     return (
         <Stack direction='horizontal' gap={2} className='d-flex align-items-center'>

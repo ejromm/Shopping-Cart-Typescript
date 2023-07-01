@@ -57,7 +57,7 @@ function App() {
   console.log(data);
   // return navbar and app routes 
   return (
-    <ShoppingCartProvider {...data}>
+    <ShoppingCartProvider data={data}>
     <NavBar />
    <Container fluid className={`bg-${ContainerColor()}`}>
     <Routes>

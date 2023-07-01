@@ -1,19 +1,15 @@
 import { Container, Row, Col, Card, Button } from "react-bootstrap"; 
-import { RateItem } from "../App";
+import { StoreItem } from "../App";
 import {Image } from 'react-bootstrap';
 import convertRating from "../utilities/convertRating";
 import { formatCurrency } from "../utilities/formatCurrency";
+import { useShoppingCart } from "../context/ShoppingCartContext";
 // create type for each prop used in a Product Pages
-type ProductPageProps = {
-    price: number, 
-    rating: RateItem, 
-    category: string, 
-    image: string, 
-    title: string,
-    description: string,
-}
+
 // Return product image and info in separated columns
-export default function ProductPage({price, rating, category, image, title, description} : ProductPageProps) {
+export default function ProductPage({price, rating, category, image, title, description, id} : StoreItem) {
+    const {  increaseCartQuantity } = useShoppingCart()
+
     return (
         <Container className="d-flex justify-content-center align-items-center" style={{ height: '90vh'}}>
             <Row  className="h-75 w-100 bg-flex">
@@ -28,7 +24,7 @@ export default function ProductPage({price, rating, category, image, title, desc
                 <Card.Subtitle style={{borderBottom: '1.5px solid black'}} className="fs-5 pb-4">{formatCurrency(price)}</Card.Subtitle>
                 <Card.Text className="pt-4" color="gray">Category: <i style={{marginLeft:'1%' ,color:'black'}}>{category[0].toUpperCase() + category.slice(1)}</i></Card.Text>
                 <Card.Text style={{fontFamily:"Lato"}}>{description}</Card.Text>
-                <Button className="align-self-center" variant='dark' size="lg"><span>ADD TO CART</span></Button>
+                <Button onClick={() => increaseCartQuantity(id)} className="align-self-center" variant='dark' size="lg"><span>ADD TO CART</span></Button>
                 </Card.Body>
                 
 

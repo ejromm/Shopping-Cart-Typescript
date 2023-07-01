@@ -4,6 +4,7 @@ import { useLocalStorage } from "../hooks/useLocalStorage";
 import { StoreItem } from "../App";
 type CartProviderProps = {
     children: ReactNode,
+    data: StoreItem[]
 }
 type ShoppingCartContext = {
     openCart: () => void; 
@@ -25,7 +26,7 @@ const ShoppingCartContext = createContext({} as ShoppingCartContext);
 export function useShoppingCart() {
     return useContext(ShoppingCartContext);
 }
-export function ShoppingCartProvider({ children }: CartProviderProps, data: StoreItem[]) {
+export function ShoppingCartProvider({ children, data }: CartProviderProps) {
     const [cartItems, setCartItems] = useLocalStorage<CartItem[]>('shopping-cart', []);
     const [isOpen, setIsOpen] = useState(false);
 
@@ -38,9 +39,10 @@ export function ShoppingCartProvider({ children }: CartProviderProps, data: Stor
         return cartItems.find((item: CartItem) => {item.id === id})?.quantity || 0;
     }
     function increaseCartQuantity(id:number) : void {
+        console.log('data', data)
         setCartItems((currItems: CartItem[]) => {
             if(currItems.find((item: CartItem) => {item.id === id}) == null) {
-                return [...currItems, {id: 1, quantity: 1}]
+                return [...currItems, {id: id, quantity: 1}]
             } else {
                 return currItems.map((item: CartItem) => {
                     if(item.id === id) {
@@ -71,5 +73,5 @@ export function ShoppingCartProvider({ children }: CartProviderProps, data: Stor
             return currItems.filter((item: CartItem) => item.id !== id);
         })
     }
-    return (<ShoppingCartContext.Provider value={{openCart, closeCart, getItemQuantity, increaseCartQuantity, decreaseCartQuantity, removeFromCart, cartQuantity, cartItems}}>{children}<ShoppingCart isOpen={isOpen} {...data} /></ShoppingCartContext.Provider>)
+    return (<ShoppingCartContext.Provider value={{openCart, closeCart, getItemQuantity, increaseCartQuantity, decreaseCartQuantity, removeFromCart, cartQuantity, cartItems}}>{children}<ShoppingCart isOpen={isOpen} data={data} /></ShoppingCartContext.Provider>)
 }   

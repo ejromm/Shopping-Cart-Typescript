@@ -3,7 +3,7 @@ import {  Card } from "react-bootstrap";
 import { formatCurrency } from "../utilities/formatCurrency";
 import convertRating from "../utilities/convertRating.tsx";
 import { useState } from "react";
-
+import { useShoppingCart } from "../context/ShoppingCartContext.tsx";
 // create type for nesessary store item info
 type StoreItemProps = {
     price: number, 

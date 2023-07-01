@@ -1,7 +1,9 @@
 import { Container, Nav, Navbar as NavbarBs } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
+import { useShoppingCart } from "../context/ShoppingCartContext";
 // create sticky navbar
 export default function NavBar() {
+    const {openCart, cartQuantity} = useShoppingCart();
     // return bootstrap navbar with links to pages
     return( 
         <NavbarBs sticky="top" className="bg-black" style={{height: '10vh'}}>
@@ -10,7 +12,7 @@ export default function NavBar() {
                 <Nav className="gap-10%" style={{ fontFamily:'Roboto, sans-serif', fontSize:'1.2rem', gap:'2vw'}} >
                     <Nav.Link className="text-white" to='/' as={NavLink}>Home</Nav.Link>
                     <Nav.Link className="text-white" to='/store' as={NavLink}>Shop</Nav.Link>
-                    <Nav.Link className="text-white" eventKey=''>Cart</Nav.Link>
+                    <Nav.Link onClick={openCart} className="text-white" eventKey=''>Cart</Nav.Link>
                 </Nav>
                 
             </Container>
