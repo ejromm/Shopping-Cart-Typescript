@@ -41,8 +41,8 @@ export function ShoppingCartProvider({ children, data }: CartProviderProps) {
     function increaseCartQuantity(id:number) : void {
         console.log('data', data)
         setCartItems((currItems: CartItem[]) => {
-            if(currItems.find((item: CartItem) => {item.id === id}) == null) {
-                return [...currItems, {id: id, quantity: 1}]
+            if(currItems.find((item: CartItem) => item.id === id) == null) {
+                return [...currItems, {id, quantity: 1}]
             } else {
                 return currItems.map((item: CartItem) => {
                     if(item.id === id) {
@@ -52,6 +52,7 @@ export function ShoppingCartProvider({ children, data }: CartProviderProps) {
                 })
             }
         }) 
+        console.log('cartitems',cartItems)
     }
     function decreaseCartQuantity(id: number) : void {
         setCartItems((currItems: CartItem[]) => {
