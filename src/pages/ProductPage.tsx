@@ -8,7 +8,7 @@ import { useShoppingCart } from "../context/ShoppingCartContext";
 
 // Return product image and info in separated columns
 export default function ProductPage({price, rating, category, image, title, description, id} : StoreItem) {
-    const {  increaseCartQuantity } = useShoppingCart()
+    const {  increaseCartQuantity, openCart } = useShoppingCart()
 
     return (
         <Container className="d-flex justify-content-center align-items-center" style={{ height: '90vh'}}>
@@ -24,7 +24,7 @@ export default function ProductPage({price, rating, category, image, title, desc
                 <Card.Subtitle style={{borderBottom: '1.5px solid black'}} className="fs-5 pb-4">{formatCurrency(price)}</Card.Subtitle>
                 <Card.Text className="pt-4" color="gray">Category: <i style={{marginLeft:'1%' ,color:'black'}}>{category[0].toUpperCase() + category.slice(1)}</i></Card.Text>
                 <Card.Text style={{fontFamily:"Lato"}}>{description}</Card.Text>
-                <Button onClick={() => increaseCartQuantity(id)} className="align-self-center" variant='dark' size="lg"><span>ADD TO CART</span></Button>
+                <Button onClick={() => {increaseCartQuantity(id); openCart()}} className="align-self-center" variant='dark' size="lg"><span>ADD TO CART</span></Button>
                 </Card.Body>
                 
 

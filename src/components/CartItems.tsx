@@ -7,19 +7,27 @@ type CartItemProps = {
     data: StoreItem[]
 }
 export function CartItems({item, data}: CartItemProps) {
-    const { removeFromCart } = useShoppingCart(); 
+    const { decreaseCartQuantity, increaseCartQuantity, removeFromCart } = useShoppingCart(); 
     console.log('data in store')
     const cItem: StoreItem | null | undefined = data.find((i: StoreItem) => i.id === item.id); 
     if(cItem == null) return null; 
     return (
         <Stack direction='horizontal' gap={2} className='d-flex align-items-center'>
-        <Image src={cItem.image} style={{ width: "125px", height: "75px", objectFit: "cover"}} />
-        <div className='me-auto'>
-            <div>{cItem.title}{" "} {item.quantity > 1 && (<span className="text-muted" style={{fontSize: '.65rem'}}>{item.quantity}x</span>)}</div>  
+        <Image src={cItem.image} style={{ border: '1px solid black', width: "15%", maxHeight: "100px", objectFit:'contain'}} />
+        <div style={{border: '1px solid black'}} className='me-auto'>
+            <div style={{fontSize: '.8rem'}}>{cItem.title}{" "}</div>  
             <div className="text-muted" style={{ fontSize: '.7rem'}}>{formatCurrency(cItem.price)}</div>   
+            
         </div>
-        <div>{formatCurrency(cItem.price * item.quantity)}</div>
-        <Button  variant="outline-danger" size="sm" onClick={() => removeFromCart(item.id)}>&times;</Button>
+        <div>
+            <input type="button" value="-" onClick={item.quantity > 1 ? () =>decreaseCartQuantity(item.id) : () => removeFromCart(item.id)} />
+             <input type="number"
+             step="1"
+             max=""
+             value={item.quantity}
+              />
+            <input type="button" value="+"  onClick={() => increaseCartQuantity(item.id)} />
+        </div>
         </Stack>
     )
 }
