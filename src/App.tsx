@@ -5,6 +5,7 @@ import Store from "./pages/Store";
 import NavBar from "./components/NavBar";
 import { useState, useEffect, SetStateAction } from "react";
 import ProductPage from "./pages/ProductPage";
+import { ShoppingCartProvider } from "./context/ShoppingCartContext";
 // create type for rating object
 export type RateItem = {
     rate: number;
@@ -56,7 +57,7 @@ function App() {
   console.log(data);
   // return navbar and app routes 
   return (
-    <>
+    <ShoppingCartProvider {...data}>
     <NavBar />
    <Container fluid className={`bg-${ContainerColor()}`}>
     <Routes>
@@ -68,7 +69,8 @@ function App() {
       })}
     </Routes>
    </Container>
-   </>
+   </ShoppingCartProvider>
+   
   )
 }
 

@@ -3,6 +3,7 @@ import { RateItem } from "../App";
 import {Image } from 'react-bootstrap';
 import convertRating from "../utilities/convertRating";
 import { formatCurrency } from "../utilities/formatCurrency";
+// create type for each prop used in a Product Pages
 type ProductPageProps = {
     price: number, 
     rating: RateItem, 
@@ -11,6 +12,7 @@ type ProductPageProps = {
     title: string,
     description: string,
 }
+// Return product image and info in separated columns
 export default function ProductPage({price, rating, category, image, title, description} : ProductPageProps) {
     return (
         <Container className="d-flex justify-content-center align-items-center" style={{ height: '90vh'}}>
