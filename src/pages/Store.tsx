@@ -8,7 +8,7 @@ export default function Store( data: StoreItem[] ) {
    const d = Array.from(Object.values(data));
     //return repsonsive bootstrap grid displaying a store card for each grid item
     return (
-        <Container >
+        <Container  style={{maxWidth:'100%', zIndex: '-1'}}>
         <Row style={{paddingTop: '1%',paddingBottom:'5%'}} lg={4} md={2} sm={1} xs={1} className="g-4">
         {d.map((item, index) => (
             <Col style={{ height: '400px'}} key={index} ><StoreCard  {...item} /></Col>

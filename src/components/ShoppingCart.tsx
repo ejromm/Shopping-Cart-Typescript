@@ -25,7 +25,7 @@ export function ShoppingCart({isOpen, data}: ShoppingCartProps) {
     console.log(matches);
       
     return (
-        <Offcanvas style={{width: matches ? '100%': '30%'}}  show={isOpen} onHide={closeCart} placement="end" >
+        <Offcanvas style={{minWidth: matches ? '100%': '30%'}}  show={isOpen} onHide={closeCart} placement="end" >
         <Offcanvas.Header closeButton><Offcanvas.Title>Your Shopping Bag</Offcanvas.Title></Offcanvas.Header>
         <Offcanvas.Body>
             <Stack gap={3}>
